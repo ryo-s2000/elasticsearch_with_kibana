@@ -1,0 +1,18 @@
+version: '3'
+services:
+  elasticsearch:
+    build: elasticsearch
+    platform: linux/amd64
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+  kibana:
+    build: kibana
+    platform: linux/amd64
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
